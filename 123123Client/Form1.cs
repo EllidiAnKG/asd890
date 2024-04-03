@@ -19,28 +19,13 @@ namespace _123123Client
         public Form1()
         {
             InitializeComponent();
-            localIp = GetLocalIPAddress();
             
         }
 
-        private string GetLocalIPAddress()
-        {
-            IPHostEntry host;
-            string localIP = "?";
-            host = Dns.GetHostEntry(Dns.GetHostName());
-            foreach (IPAddress ip in host.AddressList)
-            {
-                if (ip.AddressFamily == AddressFamily.InterNetwork)
-                {
-                    localIP = ip.ToString();
-                    break;
-                }
-            }
-            return localIP;
-        }
 
         private void button1_Click(object sender, EventArgs e)
         {
+            localIp = textBox3.Text;
             remoteIp = textBox4.Text;
             client = new TcpClient(remoteIp, 12345);
             stream = client.GetStream();
